@@ -1,0 +1,11 @@
+<h3 mat-dialog-title>Envoie par courriel</h3>
+<div>
+    <mat-dialog-content>
+        <p>Svp, confirmez que vous désirez envoyer ce dessin à ce courriel :<br><b>{{this.exportDrawingService.email}}</b></p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button mat-raised-button (click)="closeDialog()">Non</button>
+        <button mat-raised-button class = "mat-primary" (click)="confirmSending()">Oui, envoyer le dessin.</button>
+    </mat-dialog-actions>
+</div>

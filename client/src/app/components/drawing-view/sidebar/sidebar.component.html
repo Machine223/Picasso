@@ -1,0 +1,50 @@
+<div id="sidebar">
+    <mat-drawer mode="side" opened disableClose>
+        <div class="tools">
+            <mat-button-toggle-group id="buttons_container" vertical="true">
+                <button mat-raised-button
+                    *ngFor="let TOOLS of TOOLS_BUTTON"
+                    matTooltip="{{TOOLS.name}}"
+                    class="sidebar_button"
+                    (click)="buttonClick(TOOLS.name)"
+                    (contextmenu)="buttonClick(TOOLS.name)"
+                    [ngStyle]="{
+                        'background-color': (TOOLS.name === toolManager.selectedTool ? '#77d8e6' : 'white')}">
+                        <i class="material-icons">{{TOOLS.icon}}</i>
+                </button>
+            </mat-button-toggle-group>
+        </div>
+        <div class="config">
+            <mat-button-toggle-group id="config_container" vertical="true">
+                <button mat-raised-button
+                    [disabled]="this.undoRedo.executedCommands.length === 0"
+                    matTooltip="{{UNDO_BUTTON.name}}"
+                    class="sidebar_config_button"
+                    (click)="buttonClick(UNDO_BUTTON.name)"
+                    (contextmenu)="buttonClick(UNDO_BUTTON.name)">
+                        <i class="material-icons">{{UNDO_BUTTON.icon}}</i>
+                </button>
+                <button mat-raised-button
+                    [disabled]="this.undoRedo.undoneCommands.length === 0"
+                    matTooltip="{{REDO_BUTTON.name}}"
+                    class="sidebar_config_button"
+                    (click)="buttonClick(REDO_BUTTON.name)"
+                    (contextmenu)="buttonClick(REDO_BUTTON.name)">
+                        <i class="material-icons">{{REDO_BUTTON.icon}}</i>
+                </button>
+                <button mat-raised-button
+                    *ngFor="let CONFIG of CONFIG_BUTTON"
+                    matTooltip="{{CONFIG.name}}"
+                    class="sidebar_config_button"
+                    (click)="buttonClick(CONFIG.name)"
+                    (contextmenu)="buttonClick(CONFIG.name)"
+                    [ngStyle]="{'background-color': (CONFIG.name === toolManager.selectedTool ? '#77d8e6' : 'white')}">
+                        <i class="material-icons">{{CONFIG.icon}}</i>
+                </button>
+            </mat-button-toggle-group>
+        </div>
+    </mat-drawer>
+</div>
+
+
+

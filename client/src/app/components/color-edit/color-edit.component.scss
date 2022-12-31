@@ -1,0 +1,77 @@
+:host {
+  display: block;
+  width: 316px;
+  padding: 16px;
+}
+
+.container {
+  display: grid;
+  grid-template-rows:  auto auto auto auto auto;
+  grid-template-columns:  auto auto;
+}
+
+#colorWrapperBox {
+  background-color: white;
+  height: 250px;
+  width: 350px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 5;
+}
+
+#inputBox {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  grid-row-start: 1;
+  grid-row-end: 5;
+}
+
+.color-wrapper {
+  display: flex;
+  height: 250px;
+}
+
+.input-wrapper {
+  margin-top: 16px;
+  display: flex;
+  border-radius: 1px;
+  border: 1px solid rgb(220, 220, 220);
+  padding: 8px;
+  height: 32px;
+  width: 435px;
+  justify-content: center;
+  grid-row-start: 5;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.color-div {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgb(220, 220, 220);
+}
+
+#color-confirm-button{
+  height: 35px;
+  width: 100px;
+}
+
+#color-cancel-button{
+  height: 35px;
+  width: 90px;
+  margin-right: 20px;
+}
+
+.onHover {
+  background-color: #ED85F2;
+}
+
+#color-manual-change{
+  width: 80px;
+}
+
+.inputField{
+  width: 100px;
+}

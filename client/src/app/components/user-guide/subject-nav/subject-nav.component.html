@@ -1,0 +1,63 @@
+<div id="subject-nav">
+  <mat-accordion multi="true">
+  <mat-expansion-panel [disabled]="false">
+    <mat-expansion-panel-header>
+      {{guideInformationService.categories[0].category}}
+    </mat-expansion-panel-header>
+    <mat-panel-description (click)="guideInformationService.subjectNavClicked()" *ngFor="let subject of guideInformationService.categories[0].subjects" [class.selected]="subject===selectedSubject" (click)="guideInformationService.onSelect(subject);">
+      <span class = "subject">{{subject.subjectTitle}}</span>
+    </mat-panel-description>
+  </mat-expansion-panel>
+    <mat-expansion-panel [disabled]="false">
+      <mat-expansion-panel-header>
+        {{guideInformationService.categories[1].category}}
+      </mat-expansion-panel-header>
+      <mat-panel-description (click)="guideInformationService.subjectNavClicked()" *ngFor="let subject of guideInformationService.categories[1].subjects" [class.selected]="subject===selectedSubject" (click)="guideInformationService.onSelect(subject)">
+        <span class = "subject">{{subject.subjectTitle}}</span>
+      </mat-panel-description>
+    </mat-expansion-panel>
+    <mat-expansion-panel [disabled]="false">
+      <mat-expansion-panel-header>
+        {{guideInformationService.categories[2].category}}
+      </mat-expansion-panel-header>
+      <mat-panel-description (click)="guideInformationService.subjectNavClicked()" *ngFor="let subject of guideInformationService.categories[2].subjects" [class.selected]="subject===selectedSubject" (click)="guideInformationService.onSelect(subject)">
+        <span class = "subject">{{subject.subjectTitle}}</span>
+      </mat-panel-description>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <div id="buttons-container">
+    <button mat-mini-fab class="button" [disabled]="guideInformationService.firstCategory" [ngClass]="{'onHover': this.isHovering[0] }"
+      (click)="guideInformationService.prevCategory();guideInformationService.subjectNavClicked()"
+      (mouseover)="setHover(0, true)" (mouseout)="setHover(0, false)" [ngClass]="{'onHover': this.isHovering[0] }">
+      <i id="prev" class="material-icons" >
+        keyboard_arrow_left
+      </i>
+    </button>
+
+    <button mat-mini-fab class="button" [disabled]="guideInformationService.lastCategory" [ngClass]="{'onHover': this.isHovering[1] }"
+      (click)="guideInformationService.nextCategory();guideInformationService.subjectNavClicked()"
+      (mouseover)="setHover(1, true)" (mouseout)="setHover(1, false)" [ngClass]="{'onHover': this.isHovering[1] }">
+      <i id="next" class="material-icons" >
+        keyboard_arrow_right
+      </i>
+    </button>
+
+    <button mat-mini-fab class="button" (click)="guideInformationService.navClicked()"
+      (mouseover)="setHover(2, true)" (mouseout)="setHover(2, false)" [ngClass]="{'onHover': this.isHovering[2] }">
+      <i id="search" class="material-icons">search</i>
+    </button>
+
+    <a id="ExitButton" routerLink={{previousRoute}} routerLinkActive="active">
+      <button mat-mini-fab class="button" (mouseover)="setHover(3, true)" (mouseout)="setHover(3, false)"
+        [ngClass]="{'onHover': this.isHovering[3] }">
+        <i class="material-icons">
+          exit_to_app
+        </i>
+      </button>
+    </a>
+  </div>
+
+</div>
+
+<router-outlet></router-outlet>

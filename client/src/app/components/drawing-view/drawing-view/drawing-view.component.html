@@ -1,0 +1,17 @@
+
+<router-outlet>
+    <div>
+        <app-sidebar id="sidebar"></app-sidebar>
+        <mat-drawer-container class="container" autosize>
+            <mat-drawer #drawer class="modal-window" mode="side" opened disableClose>
+                <app-drawing-modal-window id='modal'></app-drawing-modal-window>
+            </mat-drawer>
+            <mat-drawer-content class="mat-drawer-content ng-star-inserted" style="margin-left: 300px;" (scroll)="scroll($event)">
+              <div class="drawing-zone" (scroll)="scroll($event)">
+                  <app-drawing-zone></app-drawing-zone>
+              </div>
+          </mat-drawer-content>
+        </mat-drawer-container>
+    </div>
+</router-outlet>
+

@@ -1,0 +1,23 @@
+.tag {
+    display: inline-block;
+    width: auto;
+    background-color: #b0d2cf;
+    margin: 5px;
+    padding: 10px;
+}
+
+#canvasPreview {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    float: left;
+}
+
+#input {
+    float: right;
+    margin: 5px;
+}
+
+.onHover {
+    background-color: #ED85F2;
+}

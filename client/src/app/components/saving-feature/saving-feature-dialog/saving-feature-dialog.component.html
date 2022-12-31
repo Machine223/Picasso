@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Sauvegarde</h1>
+<p>Veuillez entrer le nom et les étiquettes de votre dessin. Cliquez sur une étiquette pour l'effacer.</p>
+<p><b>Conditions:</b> Le nom de votre dessin <b>ne doit pas</b> être laissé vide. Vos étiquettes doivent obligatoirement <b>débuter par une lettre</b>.</p>
+<div *ngIf="isExistingDrawing"><p>Le dessin est actuellement sauvegardé à la base de données.</p></div>
+<div *ngIf="!isExistingDrawing"><p>Le dessin <i>n'est pas</i> actuellement sauvegardé à la base de données.</p></div>
+<canvas #canvas id="canvasPreview" >
+</canvas>
+<div id="input">
+    <mat-form-field appearance="fill">
+        <mat-label id="name-input">Nom du dessin</mat-label>
+        <input matInput [(ngModel)]="name">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label id="tags-input">Tag(s)</mat-label>
+        <input matInput [(ngModel)]="currentTag">
+    </mat-form-field>
+    <button mat-raised-button class = "mat-primary" (click)="addTag()"
+            (mouseover)="setHover(0, true)" (mouseout)="setHover(0, false)" 
+            [ngClass]="{'onHover': this.isHovering[0] }">Ajouter tag</button>
+    <br>
+    <div id="tagContainer">
+        <mat-card *ngFor="let tag of tags" class="tag" (click)="removeTag(tag)">{{tag}}</mat-card>
+    </div>
+    <button mat-raised-button class="mat-primary" (click)="saveDrawingInfo()"
+            (mouseover)="setHover(1, true)" (mouseout)="setHover(1, false)"
+            [ngClass]="{'onHover': this.isHovering[1] }">Sauvegarder</button>
+    <button mat-raised-button (click)="close()">Retour en arrière</button>
+</div>

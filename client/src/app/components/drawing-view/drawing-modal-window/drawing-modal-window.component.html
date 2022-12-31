@@ -1,0 +1,195 @@
+<span id="header"> {{selectedTool}}</span>
+
+<app-color-picker></app-color-picker>
+<div>
+	<span id="property"> Propriétés:</span>
+	<div>
+		<!-- Stroke width for many -->
+		<div *ngIf="strokeWidthTools.includes(selectedTool)">
+			<p>Épaisseur du trait</p>
+			<mat-slider class="property_slider"
+			[thumbLabel]="true" min="1" max="100" step="1"
+			[(ngModel)]="this.toolProperties.strokeWidth"></mat-slider>
+		</div>
+
+		<!-- Junction type for line -->
+		<div *ngIf="junctionTypeLine === selectedTool">
+			<mat-form-field class="property_box">
+				<mat-label>Type de jonction</mat-label>
+				<mat-select [(ngModel)]="toolProperties.junctionType">
+					<mat-option *ngFor="let attr of junctionTypes" [value]=attr
+					(onSelectionChange)="changeJunctionType(attr, $event.isUserInput)">{{attr}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+
+		<!-- Dot diameter for line -->
+		<div *ngIf="dotDiameterLine === selectedTool">
+			<p>Diamètre des points de jonction</p>
+			<mat-slider
+				class="property_slider"
+				[thumbLabel]="true" min="1" max="100" step="1"
+				[(ngModel)]="this.toolProperties.dotDiameter">
+			</mat-slider>
+		</div>
+
+		<!-- Spray-can Dot diameter -->
+		<div *ngIf="dotDiameterSpray === selectedTool">
+			<p>Diamètre du jet</p>
+			<mat-slider
+				class="property_slider"
+				[thumbLabel]="true" min="1" max="100" step="1"
+				[(ngModel)]="this.toolProperties.dotSprayDiameter">
+			</mat-slider>
+		</div>
+
+		<!-- Spray-can Dot interval -->
+		<div *ngIf="dotDiameterSpray === selectedTool">
+			<p>Nombre d’émissions par seconde</p>
+			<mat-slider
+				class="property_slider"
+				[thumbLabel]="true" min="1" max="100" step="1"
+				[(ngModel)]="this.toolProperties.dotSprayInterval">
+			</mat-slider>
+		</div>
+
+		<!-- Stroke type -->
+		<div *ngIf="strokeTypeTools.includes(selectedTool)">
+			<mat-form-field class="property_box">
+				<mat-label>Type de tracé</mat-label>
+				<mat-select [(ngModel)]="toolProperties.strokeType">
+					<mat-option *ngFor="let attr of strokeTypes" [value]=attr
+					(onSelectionChange)="changeStrokeType(attr, $event.isUserInput)">{{attr}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+
+		<!-- Sides count -->
+		<div *ngIf="this.sideCountPolygon === this.selectedTool">
+			<p>Nombre de côtés</p>
+			<mat-slider
+				class="property_slider"
+				[thumbLabel]="true" min="3" max="12" step="1"
+				[(ngModel)]="this.toolProperties.sidesCount">
+			</mat-slider>
+		</div>
+
+		<!-- Texture -->
+		<div *ngIf="textureTypeBrush === selectedTool">
+			<mat-form-field class="property_box">
+				<mat-label>Type de texture</mat-label>
+				<mat-select
+					[(ngModel)]="this.toolProperties.textureType"
+				>
+					<mat-option *ngFor="let attr of textureTypes"
+								[value]=attr
+								(onSelectionChange)="changeTextureType(attr,$event.isUserInput);">
+								{{attr}}
+								<img height="40" src="/assets/brush{{ attr }}.png" />
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+
+		<!-- Text note-->
+		<div *ngIf="selectedTool === 'Texte (T)'">
+			<p><i>Les changements d'attributs ne prendront effet qu'à la création d'une nouvelle forme.</i></p>
+		</div>
+		<!-- Font family Text -->
+		<div *ngIf="fontFamily === selectedTool">
+			<mat-form-field class="property_box">
+				<mat-label>Polices de caractère</mat-label>
+				<mat-select [(ngModel)]="toolProperties.fontFamily">
+					<mat-option *ngFor="let attr of fontFamilyTypes" [value]=attr
+					(onSelectionChange)="changeFontFamily(attr, $event.isUserInput)">{{attr}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+
+		
+		<!-- Font size Text-->
+		<div *ngIf="this.fontSize === this.selectedTool">
+			<p>Taille du texte</p>
+			<mat-slider
+				class="property_slider"
+				[thumbLabel]="true" min="6" max="120" step="1"
+				[(ngModel)]="this.toolProperties.fontSize"></mat-slider>
+		</div>
+
+		<!-- Mutators Text-->
+		<div id="mutators">
+			<!-- Bold checkbox -->
+			<div *ngIf="this.mutators === this.selectedTool">
+				<mat-checkbox [(ngModel)]="this.toolProperties.bold">Gras</mat-checkbox>
+			</div>
+
+			<!-- Italics checkbox Text-->
+			<div *ngIf="this.mutators === this.selectedTool">
+				<mat-checkbox [(ngModel)]="this.toolProperties.italics">Italique</mat-checkbox>
+			</div>
+		</div>
+
+		<!-- Text alignment Text -->
+		<div *ngIf="textAlignment === selectedTool">
+			<mat-form-field class="property_box">
+				<mat-label>Alignement du texte</mat-label>
+				<mat-select [(ngModel)]="toolProperties.textAlignment">
+					<mat-option *ngFor="let attr of textAlignmentTypes" [value]=attr
+					(onSelectionChange)="changeTextAlignment(attr, $event.isUserInput)">{{attr}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+
+		<!-- Eraser size -->
+		<div *ngIf="this.sizeEraser === this.selectedTool">
+			<p>Grosseur de l'efface</p>
+			<mat-slider
+				class="property_slider"
+				[thumbLabel]="true" min="1" max="100" step="1"
+				[(ngModel)]="this.toolProperties.eraserSize">
+			</mat-slider>
+		</div>
+
+		<!-- Grid -->
+		<div *ngIf="this.gridTypeTools === this.selectedTool">
+			<p id="gridDisplay">Afficher la grille:</p>
+			<mat-checkbox class="gridCheckbox" [(ngModel)]="this.toolProperties.gridSelected "></mat-checkbox>
+			<p>Opacité</p>
+			<mat-slider
+				class="property_slider"
+				[thumbLabel]="true" min="0.2" max="1" step="0.01"
+				[(ngModel)]="this.gridService.gridOpacity">
+			</mat-slider>
+			<p>Taille du quadrillage</p>
+			<mat-slider
+				class="property_slider"
+				[thumbLabel]="true" min="5" max="500" step="5"
+				[(ngModel)]="this.gridService.gridLength"
+				(ngModelChange)="changeGridSize()" (input)="changeGridSize()">
+			</mat-slider>
+		</div>
+	</div>
+
+  <!-- Selector -->
+  <div *ngIf="this.selector === this.selectedTool">
+    <div>
+    <button mat-raised-button color="primary" class="button" [disabled]="selectorTool.selector.selectedElements.length === 0" (click)="manipulationService.cut()">Couper</button>
+    </div>
+    <div>
+    <button mat-raised-button color="primary" class="button" [disabled]="selectorTool.selector.selectedElements.length === 0" (click)="manipulationService.copy()">Copier</button>
+    </div>
+    <div>
+    <button mat-raised-button color="primary" class="button" [disabled]="manipulationService.savedSelection.length === 0" (click)="manipulationService.paste()">Coller</button>
+    </div>
+    <div>
+    <button mat-raised-button color="primary" class="button" [disabled]="selectorTool.selector.selectedElements.length === 0" (click)="manipulationService.duplicate()">Dupliquer</button>
+    </div>
+  </div>
+      <!-- Bucket -->
+  <div *ngIf="this.paintBucket === this.selectedTool">
+    <p>Tolérance:</p>
+    <mat-slider class="property_slider" thumbLabel tickInterval="1" [min]="0" [max]="100"
+                    [(ngModel)]="this.toolProperties.paintBucketTolerance"></mat-slider>
+  </div>
+</div>
+

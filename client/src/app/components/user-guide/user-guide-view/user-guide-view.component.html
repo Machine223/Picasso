@@ -1,0 +1,32 @@
+<div id="guide">
+  <div *ngIf="!(serviceSubject.isNavClicked)">
+    <h2>{{serviceSubject.subjectSource.getValue().subjectTitle}}</h2>
+    <p>{{serviceSubject.subjectSource.getValue().description}}</p>
+    <div *ngIf="serviceSubject.subjectSource.getValue().shortcut">
+      <p><b>Raccourci: </b>{{serviceSubject.subjectSource.getValue().shortcut}}</p>
+    </div>
+    <div *ngIf="this.serviceSubject.hasImage()">
+      <app-video-displayer class="center" class="video" [informationSubject]="information"> </app-video-displayer>
+    </div>
+  </div>
+  <div *ngIf="serviceSubject.isNavClicked">
+    <ul class="nav">
+      <li *ngFor="let category of serviceSubject.categories">
+      <h1>{{category.category}}</h1>
+      <ul>
+        <li *ngFor="let subject of category.subjects">
+        <h2>{{subject.subjectTitle}}</h2>
+        <p>{{subject.description}}</p>
+        <p><b>Raccourci(s): </b>{{subject.shortcut}}</p>
+          <div *ngIf="hasImage(subject)">
+            <video class="center" preload="auto" class="video" autoplay loop="true" [muted]="'muted'">
+              <source [src]="subject.imageLink" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </li>
+      </ul>
+      </li>
+    </ul>
+  </div>
+</div>

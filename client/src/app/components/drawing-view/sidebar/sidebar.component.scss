@@ -1,0 +1,49 @@
+.tools {
+    position: relative;
+}
+
+.config {
+    position: fixed;
+    bottom: 0;
+}
+
+.sidebar_button, .sidebar_config_button {
+    margin: 5px;
+    min-height: 40px;
+    max-height: 40px;
+    min-width: 40px;
+    max-width: 40px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    border: 2px solid rgb(66, 66, 66);
+    transition-duration: 0.4s;
+    color:rgb(26, 25, 25);
+}
+
+.sidebar_button :hover {
+    color:rgb(129, 126, 126);
+}
+
+.sidebar_config_button :hover {
+    color:rgb(129, 126, 126);
+}
+
+
+.mat-button-toggle-group {
+    border: 0px;
+}
+
+.button :hover{
+    background-color: black;
+}
+
+.mat-drawer {
+    background-color: #2b2b2b; 
+}
+
+@media screen and (max-width: 2460px) { 
+    .config {
+        position: relative;
+    }
+}

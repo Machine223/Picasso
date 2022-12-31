@@ -1,0 +1,46 @@
+<h1 mat-dialog-title>Exportation du dessin</h1>
+<p>Veuillez entrer le nom de votre dessin.</p>
+<p><b>Conditions:</b> Le nom de votre dessin <b>ne doit pas</b> être laissé vide.</p>
+<canvas #canvas id="canvasPreview">
+</canvas>
+<div id ="propertiesContainer">
+  <div>
+    <mat-checkbox [(ngModel)]="this.isEmail" >Envoyer par courriel</mat-checkbox>
+  <!--  https://stackblitz.com/angular/bbdjdxpkbvm?file=src%2Fapp%2Fform-field-hint-example.html-->
+    <mat-form-field [ngStyle]="{'display':isEmail ? 'initial' : 'none'}" >
+      <mat-label>Courriel</mat-label>
+    <input matInput #emailInput (input)="this.exportDrawingService.email=emailInput.value" [formControl]="this.emailControl" required placeholder="Courriel">
+    <mat-error *ngIf="emailControl.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nom du dessin</mat-label>
+    <input matInput [(ngModel)]="this.exportDrawingService.name"  required placeholder="Dessin">
+    </mat-form-field>
+    <mat-form-field >
+      <mat-label>Extension</mat-label>
+      <mat-select  matNativeControl required [(ngModel)]="this.exportDrawingService.extensionType" >
+        <mat-option *ngFor="let attr of this.exportDrawingService.extensionTypeArray" [value]=attr>.{{attr}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field >
+      <mat-label>Type de filtre</mat-label>
+      <mat-select  matNativeControl required [(ngModel)]="this.exportDrawingService.filterType" >
+          <mat-option *ngFor="let attr of this.exportDrawingService.filterTypeArray"
+                      [value]=attr (onSelectionChange)="updateFilter(attr, $event.isUserInput)">
+            {{attr}}
+          </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div id="button">
+    <a #save [href]="parsingService.image.src" download [ngStyle]="{'display':isEmail ? 'none' : 'initial'}">
+      <button mat-raised-button class="mat-primary" (click)="saveImage(false)"
+              (mouseover)="setHover(true)" (mouseout)="setHover(false)"
+              [ngClass]="{'onHover': this.isHovering }">Sauvegarder</button>
+    </a>
+    <button mat-raised-button class="mat-primary" (click)="saveImage(true)" [ngStyle]="{'display':isEmail ? 'initial' : 'none'}" [disabled]="this.emailControl.invalid">Envoyer par courriel</button>
+  </div>
+  <div id="buttonReturn">
+    <button mat-raised-button (click)="close()">Annuler</button>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+.container {
+    position: fixed;
+    left: 50px;
+    right: 0;
+    top:0;
+    bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.modal-window {
+    width: 300px;
+    padding: 20px;
+    border-right: 2px solid #5d5d5d;
+    background-color: #eeeeee;
+}
+
+::-webkit-scrollbar {
+  display: block;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+  
+::-webkit-scrollbar-track {
+    border: 5px #808080;
+    border-radius: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8080807e;
+    border-radius: 10px;
+}

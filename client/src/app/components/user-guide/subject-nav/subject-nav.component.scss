@@ -1,0 +1,34 @@
+.subjects{
+  border:1px solid black;
+  display: inline-block;
+  overflow-y: auto;
+}
+
+.subject:hover {background-color: rgb(59, 211, 224)}
+
+.selected{color:rgb(255, 0, 212)}
+
+.nextprev{
+  display: inline-block;
+}
+
+#subject-nav {
+  overflow: scroll;
+  display: inline-block;
+  width: 80%;
+  padding: 10px;
+}
+
+.button {
+  background: #673AB7;
+  color: white;
+  margin: 0 5px 0 0;
+}
+
+#buttons-container {
+  margin: 10px 0;
+}
+
+.onHover {
+    background-color: #ED85F2;
+}

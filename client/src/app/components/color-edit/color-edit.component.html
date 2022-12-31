@@ -1,0 +1,65 @@
+
+<div class="container">
+  <div id="colorWrapperBox">
+    <div class="color-wrapper">
+      <app-color-edit-palette [hue]="hue" (color)="color = $event"></app-color-edit-palette>
+      <app-color-edit-slider
+        (color)="hue=$event"
+        style="margin-left:16px"
+      ></app-color-edit-slider>
+    </div>
+  </div>
+  <div id="inputBox">
+
+    <mat-form-field class="inputField">
+      <mat-label>Hexadécimal</mat-label>
+      <input matInput #hexColor="ngModel" maxlength="7" [(ngModel)]="color" (keyup)="onHexKey()"
+             pattern="#[a-fA-F0-9]{6}" oninput="this.value = this.value.replace(/[^a-fA-F0-9#]/g, '')" required>
+      <mat-error *ngIf="hexColor.errors?.pattern || hexColor.errors?.required">
+        Valeur invalide.
+      </mat-error>
+    </mat-form-field>
+    <div>
+      <mat-form-field class="inputField">
+        <mat-label>Rouge</mat-label>
+        <input matInput #redRGB="ngModel" [(ngModel)]="redColor" maxlength="3" (keyup)="onRGBKey(this.redColor)"
+               oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+        <mat-error *ngIf="redRGB.errors?.required">
+          Valeur invalide.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="inputField">
+        <mat-label>Vert</mat-label>
+        <input matInput #greenRGB="ngModel" [(ngModel)]="greenColor" maxlength="3" (keyup)="onRGBKey(this.greenColor)"
+               oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+        <mat-error *ngIf="greenRGB.errors?.required">
+          Valeur invalide.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="inputField">
+        <mat-label>Bleu</mat-label>
+        <input matInput #blueRGB="ngModel" [(ngModel)]="blueColor" maxlength="3" (keyup)="onRGBKey(this.blueColor)"
+               oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+        <mat-error *ngIf="blueRGB.errors?.required">
+          Valeur invalide.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="input-wrapper">
+    <div
+      class="color-div"
+      [ngStyle]="{'background-color': colorsService.currentColor || 'white'}"
+    ></div>
+  </div>
+</div>
+  <mat-dialog-actions>
+    <button mat-raised-button id="color-cancel-button" (click)="closeDialog()">Annuler</button>
+    <button mat-raised-button id="color-confirm-button" class = "mat-primary"
+            (mouseover)="setHover(true)" (mouseout)="setHover(false)" (click)="confirmColor()"
+            [ngClass]="{'onHover': this.isHovering }" 
+            [disabled]="hexColor.errors?.pattern || hexColor.errors?.required">Confirmer</button>
+  </mat-dialog-actions>
+
+
+

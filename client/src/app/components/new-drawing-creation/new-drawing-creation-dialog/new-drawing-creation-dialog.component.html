@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Propriétés du nouveau dessin</h2>
+
+    <mat-dialog-content [formGroup]="drawingForm" class="drawing-form">
+        <mat-form-field>
+            <input matInput placeholder="Hauteur" formControlName="height" type="number" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <span matSuffix>pixels</span>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput matNativeControl placeholder="Largeur" formControlName="width" type="number" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <span matSuffix>pixels</span>
+        </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button mat-raised-button (click)="openColorEditPanel(colorsService.backgroundColor)" [ngStyle]="{'background-color': colorsService.backgroundColor }">Couleur de fond</button>
+        <button mat-raised-button (click)="closeDrawingCreation()">Fermer</button>
+        <button mat-raised-button class = "mat-primary" (click)="createDrawing()" [disabled]="drawingForm.invalid" (mouseover)="setHover(true)"
+            (mouseout)="setHover(false)" [ngClass]="{'onHover': this.isHovering }">Créer le nouveau dessin</button>
+    </mat-dialog-actions>
+

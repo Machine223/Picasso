@@ -1,0 +1,40 @@
+<span> Couleur : </span>
+<div>
+  <button class="color-buttons" 
+        (click)="openColorEditPanel(colorsService.mainColor.getValue())" 
+        [ngStyle]="{'background-color': colorsService.getMainColorRGBA() }">
+  </button>
+  <button class="swap-buttons"
+          (click)="colorsService.colorSwap()" >
+      <mat-icon id="color-swap">swap_horiz</mat-icon>
+  </button>
+  <button class="color-buttons" id="secondary-color-circle"
+          (click)="openColorEditPanel(colorsService.secondaryColor.getValue())" 
+          [ngStyle]="{'background-color': colorsService.getSecondaryColorRGBA() }">
+          <div id="inner-color-circle"></div>
+  </button>
+</div>
+
+<div>
+  <span _ngcontent-ckm-c24=""> Opacité :</span><i class="material-icons">opacity</i>
+</div>
+<div>
+  <mat-slider class="alpha-sliders" 
+              [ngModel]="colorsService.mainColorAlpha | async" 
+              (input)=colorsService.mainColorAlpha.next($event.value) 
+              [thumbLabel]="true" min="0" max="1" step="0.01">
+  </mat-slider>
+  <mat-slider class="alpha-sliders" 
+              [ngModel]="colorsService.secondaryColorAlpha | async" 
+              (input)=colorsService.secondaryColorAlpha.next($event.value) 
+              [thumbLabel]="true" min="0" max="1" step="0.01">
+  </mat-slider>
+</div>
+<div id="color-container">
+  <div *ngFor="let color of colorsService.colorPresets">
+    <button class="preset-buttons" [ngStyle]="{'background-color': color}"
+            (click)="colorsService.presetMainColorUse(colorsService.colorPresets.indexOf(color))"
+            (contextmenu)="onRightClick(colorsService.colorPresets.indexOf(color))">
+    </button>
+  </div>
+</div>

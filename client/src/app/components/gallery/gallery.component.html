@@ -1,0 +1,35 @@
+<div id="container">
+    <div>
+      <h2 mat-dialog-title>Galerie de dessins</h2>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label id="tags-input">Tag(s)</mat-label>
+        <input matInput [(ngModel)]="currentTag">
+      </mat-form-field>
+      <button mat-raised-button class = "mat-primary" id="tag-button" (mouseover)="setHover(true)" (mouseout)="setHover(false)"
+      [ngClass]="{'onHover': this.isHovering }" (click)="addTag()">Ajouter tag</button>
+    </div>
+    <div id="tagContainer">
+        <h1 mat-dialog-title>Tags appliqués: </h1>
+        <mat-card *ngFor="let tag of currentTagsList" class="tag" (click)="removeTag(tag)">{{tag}}</mat-card>
+    </div>
+  <div>
+    <h2 mat-dialog-title>Dessins: </h2>
+  </div>
+
+    <div id="drawing-card-container">
+      <mat-card *ngIf="savedDrawings.length === 0">Il n'y a aucun dessin dans la galerie</mat-card>
+      <mat-card *ngIf="savedDrawings.length !== 0 && displayedDrawings.length === 0">Il n'y a aucun dessin qui correspond aux filtres appliqués</mat-card>
+      <mat-card [ngClass]="{'drawing-card': true, 'drawing-card-selected': selectedDrawing === drawing }" class="drawing-card" *ngFor="let drawing of displayedDrawings" (click)="selectDrawing(drawing)">
+            <img [src]="sanitize(drawing.previewSource)" class="image">
+            <p>Nom: {{drawing.name}}</p>
+            <p>Tags: {{drawing.tags}}</p>
+        </mat-card>
+    </div>
+</div>
+<div id="footer">
+    <button mat-raised-button *ngIf="activeTaskbar" class="footer-button" (click)="loadToDrawingZone()">Charger dans l'éditeur</button>
+    <button mat-raised-button *ngIf="activeTaskbar" class="footer-button" (click)="deleteFromDatabase()">Supprimer</button>
+    <button mat-raised-button id="closing-button" class="footer-button" (click)="close()">Fermer</button>
+</div>

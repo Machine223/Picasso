@@ -1,0 +1,12 @@
+<h3 mat-dialog-title>Confirmer l'envoi</h3>
+
+    <mat-dialog-content>
+        <p>Êtes-vous sûr de vouloir enregistrer le dessin?</p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button mat-raised-button (click)="closeDialog()">Non</button>
+        <button mat-raised-button class = "mat-primary" (click)="confirmDrawing()"
+                (mouseover)="setHover(true)" (mouseout)="setHover(false)"
+                [ngClass]="{'onHover': this.isHovering }">Oui, sauvegarder le dessin</button>
+    </mat-dialog-actions>

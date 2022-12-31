@@ -1,0 +1,12 @@
+.drawing-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.drawing-form > * {
+    width: 100%;
+}
+
+.onHover {
+    background-color: #ED85F2;
+}

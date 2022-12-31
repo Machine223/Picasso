@@ -1,0 +1,63 @@
+#container {
+    width: 100%;
+    height: 90%;
+    overflow: scroll;
+}
+
+#search-bar {
+    width: 100%;
+}
+
+#drawing-card-container {
+    width: 100%;
+    height: 60%;
+}
+
+.tag {
+    display: inline-block;
+    width: auto;
+    background-color: #b0d2cf;
+    margin: 5px;
+    padding: 10px;
+}
+
+#tag-button {
+    position: relative;
+    left: 20px;
+}
+
+.onHover {
+    background-color: #ED85F2;
+}
+
+.drawing-card {
+    background-color: #add8e6;
+    display: inline-block;
+    width: 29.3%;
+    padding: 1%;
+    margin: 1%;
+}
+
+.drawing-card-selected {
+    background-color: #0eb95e;
+}
+
+.image {
+    width: 100%;
+}
+
+#footer {
+    width: 100%;
+    height: 10%;
+    background-color: #aaaaaa
+}
+
+.footer-button {
+    margin:1%;
+    vertical-align: center;
+}
+
+#closing-button {
+    float: right;
+    height: auto;
+}

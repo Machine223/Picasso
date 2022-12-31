@@ -1,0 +1,24 @@
+<router-outlet>
+<div id="container">
+    <mat-card id="card">
+        <mat-card-title id="header">
+            <img id="logo" src="../../../assets/Image/LogoPicasso.png">
+        </mat-card-title>
+        <mat-card-subtitle id="subtitle">Ce logiciel est le fruit de plusieurs centaines d'heures de travail lors du cours LOG2990 du cursus informatique/logiciel de l'École Polytechnique de Montréal.</mat-card-subtitle>
+        <div id="card-content">
+            <button mat-raised-button color="primary" (mouseover)="setHover(0, true)" (mouseout)="setHover(0, false)"
+            class="button" [ngClass]="{'onHover': this.isHovering[0] }" (click)="openDialog()">Nouveau dessin</button>
+            <button mat-raised-button color="primary" (mouseover)="setHover(1, true)" (mouseout)="setHover(1, false)"
+            class="button" [ngClass]="{'onHover': this.isHovering[1] }" (click)="openGallery()">Galerie photos</button>
+            <a routerLink="/user-guide" id="linkToUserGuide">
+                <button mat-raised-button color="primary" (mouseover)="setHover(2, true)" (mouseout)="setHover(2, false)"
+                class="button" [ngClass]="{'onHover': this.isHovering[2] }">
+                    Guide d'utilisation
+                </button>
+            </a>
+            <button mat-raised-button  *ngIf="this.hasLocalStorage"  color="primary" (mouseover)="setHover(3, true)" (mouseout)="setHover(3, false)"
+            class="button" [ngClass]="{'onHover': this.isHovering[3] }" (click)="continueDrawing()">Continuer dessin</button>
+        </div>
+    </mat-card>
+  </div>
+</router-outlet>

@@ -1,0 +1,39 @@
+.property_box, .property_slider {
+  width: 100%;
+}
+
+#header {
+  display: block;
+  text-align: center;
+  margin: 10px;
+  font-weight: 800;
+  font-size: 150%;
+}
+
+#property {
+  display: block;
+  font-weight: 500;
+  font-size: 100%;
+  padding-bottom: 20px;
+}
+
+.button {
+  width: 90%;
+  margin: 5%;
+  height: 50px;
+  padding: auto;
+  white-space: pre-line;
+  line-height: 20px;
+  vertical-align: top;
+}
+#mutators {
+  margin: 20px 0;
+}
+
+#gridDisplay {
+  display: inline-block;
+}
+
+.gridCheckbox {
+  padding: 10px;
+}

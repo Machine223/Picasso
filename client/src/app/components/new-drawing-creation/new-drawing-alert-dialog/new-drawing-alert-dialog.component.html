@@ -1,0 +1,13 @@
+<h3 mat-dialog-title>Alerte</h3>
+<div>
+    <mat-dialog-content>
+        <p>Un dessin est déjà ouvert. La création d'un nouveau dessin <b>effacera</b> le dessin courant.</p>
+        <p>Souhaitez-vous continuer avec la création du nouveau dessin?</p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button mat-raised-button (click)="closeDialog()">Non</button>
+        <button mat-raised-button class = "mat-primary" (mouseover)="setHover(true)" (mouseout)="setHover(false)"
+        [ngClass]="{'onHover': this.isHovering }" (click)="confirmDrawing()">Oui,créez et effacez le dessin courant</button>
+    </mat-dialog-actions>
+</div>

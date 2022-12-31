@@ -1,0 +1,72 @@
+<div class="position" id="drawingzone" #drawingZone>
+  <svg id="svgdrawing"
+      #svgDrawing
+      style = "cursor: crosshair"
+      [attr.width]="this.drawingProperties.currentDrawingWidth"
+      [attr.height]="this.drawingProperties.currentDrawingHeight"
+      (click)="onEvent($event)"
+      (contextmenu)="onEvent($event)"
+      (mouseenter)="onEvent($event)"
+      (mouseleave)="onEvent($event)"
+      (mousemove)="onEvent($event)"
+      (mousedown)="onEvent($event)"
+      (mouseup)="onEvent($event)"
+      on-click="onEvent($event)"
+      on-dblclick="onEvent($event)"
+      on-contextmenu="onEvent($event)"
+    >
+    <filter id="1" filterUnits="objectBoundingBox">
+      <feGaussianBlur stdDeviation="2">
+      </feGaussianBlur>
+    </filter>
+    <filter id="2" filterUnits="objectBoundingBox">
+      <feTurbulence type="turbulence" result="turbulence" baseFrequency="0.01" numOctaves="2">
+      </feTurbulence>
+      <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="30" xChannelSelector="R" yChannelSelector="G">
+      </feDisplacementMap>
+    </filter>
+    <filter id="3" filterUnits="objectBoundingBox">
+      <feTurbulence type="turbulence" result="turbulence" baseFrequency="0.6" numOctaves="2">
+      </feTurbulence>
+      <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="10" xChannelSelector="R" yChannelSelector="G">
+      </feDisplacementMap>
+    </filter>
+    <filter id="4" filterUnits="objectBoundingBox" height="100px" width="100px" x="-50px" y="-50px">
+      <feTurbulence type="fractalNoise" result="turbulence" baseFrequency="0.4" numOctaves="1">
+      </feTurbulence>
+      <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="20" xChannelSelector="R" yChannelSelector="G">
+      </feDisplacementMap>
+    </filter>
+    <filter id="5" filterUnits="objectBoundingBox">
+      <feTurbulence type="turbulence" result="turbulence" baseFrequency="0.09" numOctaves="1">
+      </feTurbulence>
+      <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="10" xChannelSelector="R" yChannelSelector="G">
+      </feDisplacementMap>
+    </filter>
+    <rect #svgBackground
+          x="0"
+          y="0"
+          [attr.width]="this.drawingProperties.currentDrawingWidth"
+          [attr.height]="this.drawingProperties.currentDrawingHeight"
+          [attr.fill]="this.drawingProperties.currentDrawingColor"
+          pointer-events = "none"
+          stroke="none"
+          stroke-width="0">
+    </rect>
+  </svg>
+</div>
+<div *ngIf="isGridSelected()">
+  <svg class="position" pointer-events="none"
+      [attr.width]="this.drawingProperties.currentDrawingWidth"
+      [attr.height]="this.drawingProperties.currentDrawingHeight">
+      <defs>
+        <pattern id="grid" [attr.height]="grid.gridLength" [attr.width]="grid.gridLength" patternUnits="userSpaceOnUse">
+          <path [attr.d]="grid.pathString" fill="none" stroke="black" stroke-width="2" [attr.stroke-opacity]="grid.gridOpacity"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)" style="cursor: text" pointer-events="none"></rect>
+  </svg>
+</div>
+
+
+
