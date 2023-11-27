@@ -1,6 +1,9 @@
 # Log2990
 
 Projet généré avec [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
+![picasso1](https://github.com/Machine223/Picasso/assets/42685570/2e0f7891-cfd0-40b6-a1fe-0b3a3453d496)
+![picasso4](https://github.com/Machine223/Picasso/assets/42685570/32a2be6b-6063-4819-9e76-49c947375ab1)
+![picasso5](https://github.com/Machine223/Picasso/assets/42685570/2fd8299f-9e6d-4c44-9d94-d3be5520ce28)
 
 # Important
 
